@@ -1,6 +1,5 @@
 (async function() {
     const scripts = [
-        "babel.min.js",
         "emulator.js",
         "nipplejs.js",
         "shaders.js",
@@ -8,7 +7,8 @@
         "gamepad.js",
         "GameManager.js",
         "socket.io.min.js",
-        "compression.js"
+        "compression.js"//,
+        //"babel.min.js"
     ];
 
     const folderPath = (path) => path.substring(0, path.length - path.split('/').pop().length);

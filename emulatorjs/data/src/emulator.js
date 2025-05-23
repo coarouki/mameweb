@@ -523,8 +523,8 @@ class EmulatorJS {
                     } else if (k.endsWith(".worker.js")) {
                         thread = data[k];
                     } else if (k.endsWith(".js")) {
-                        //js = data[k];
-                        js = new TextDecoder().decode(data[k]);                        
+                        js = data[k];
+                        //js = new TextDecoder().decode(data[k]);                        
                         //console.log("emulator.js -> downloadGameCore js : " + js);
                     } else if (k === "build.json") {
                         this.checkCoreCompatibility(JSON.parse(new TextDecoder().decode(data[k])));
@@ -615,9 +615,9 @@ class EmulatorJS {
         });
     }
     initGameCore(js, wasm, thread) {        
-        let JS = Babel.transform(js, { presets: ["env"] }).code
+        //let JS = Babel.transform(js, { presets: ["env"] }).code
         let script = this.createElement("script");
-        script.src = URL.createObjectURL(new Blob([JS], {type: "application/javascript"}));
+        script.src = URL.createObjectURL(new Blob([js], {type: "application/javascript"}));
         //console.log("emulator.js -> initGameCore 2");
         script.addEventListener("load", () => {
             //console.log("emulator.js -> initGameCore load");
