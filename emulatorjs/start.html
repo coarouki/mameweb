@@ -88,7 +88,7 @@
     window.EJS_DEBUG_XX = false;
     window.EJS_pathtodata = "data/";
     window.EJS_gameUrl = "../roms/mslug.zip";
-    window.EJS_core = "mame2003";
+    window.EJS_core = "mame2000";
     window.EJS_startOnLoaded = true;
     window.EJS_player = "#EJS_player";
     window.EJS_light = true;
@@ -114,19 +114,20 @@
         exitEmulation: false
     };
 
+    document.getElementById("loading").style.display = "none";
     // EmulatorJS 로딩 후 콜백
     window.EJS_onGameStart = function() {
         document.getElementById("loading").style.display = "none";
     };
   </script>
 
-  <script>
+  <!--script>
     window.addEventListener("DOMContentLoaded", function () {
       let script = document.createElement("script");
       script.src = "data/loader.js";
       document.body.appendChild(script);
     });    
-  </script>
-  <!--script src="https://www.emulatorjs.com/loader.js"></script-->
+  </script-->
+  <script src="https://www.emulatorjs.com/loader.js"></script>
 </body>
 </html>
