@@ -1,0 +1,131 @@
+<DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">  
+  <title>MAMEGAME</title>
+  <style>
+    html, body { margin: 0; padding: 0; background: gray; height: 100%; overflow: hidden; }
+    #EJS_player { width: 100%; height: 100%; }
+
+    .loader-container {
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.4); /* 투명한 배경 */
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .loader {
+        border: 14px solid #f3f3f3;
+        border-top: 14px solid #ffb3b3;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        animation: spin 2s linear infinite, colorChange 10s linear infinite;
+        box-shadow: 0 0 22px rgba(0, 0, 0, 0.3);
+    }
+
+    .loading-text {
+        font-size: 16px;
+        color: #c0d8cb;
+        font-weight: bold;
+        position: absolute;
+        text-align: center;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        animation: blinkText 1s infinite alternate;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    @keyframes colorChange {
+        0% { border-top-color: #ffb3b3; }
+        10% { border-top-color: #b3ffb3; }
+        20% { border-top-color: #b3d9ff; }
+        30% { border-top-color: #fff0b3; }
+        40% { border-top-color: #ffc0cb; }
+        50% { border-top-color: #f0e68c; }
+        60% { border-top-color: #d3d3d3; }
+        70% { border-top-color: #ffb6c1; }
+        80% { border-top-color: #e0ffff; }
+        90% { border-top-color: #f5deb3; }
+        100% { border-top-color: #ffb3b3; }
+    }
+
+    @keyframes blinkText {
+        0% { opacity: 0.2; }
+        100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 로딩 화면 -->
+  <div class="loader-container" id="loading">
+      <div class="loader-wrapper">
+          <div class="loader"></div>
+          <div class="loading-text">LOADING</div>
+      </div>
+  </div>
+
+  <!-- 에뮬레이터 영역 -->
+  <div id="EJS_player"></div>  
+
+  <script>
+    window.EJS_DEBUG_XX = true;
+    window.EJS_pathtodata = "data/";
+    window.EJS_gameUrl = "../roms/mslug.zip";
+    window.EJS_core = "mame2003";
+    window.EJS_startOnLoaded = true;
+    window.EJS_player = "#EJS_player";
+    window.EJS_light = true;
+
+    window.EJS_Buttons = {
+        playPause: false,
+        restart: false,
+        mute: false,
+        settings: false,
+        fullscreen: false,
+        saveState: false,
+        loadState: false,
+        screenRecord: false,
+        gamepad: true,
+        cheat: false,
+        volume: false,
+        saveSavFiles: false,
+        loadSavFiles: false,
+        quickSave: false,
+        quickLoad: false,
+        screenshot: false,
+        cacheManager: false,
+        exitEmulation: false
+    };
+
+    // EmulatorJS 로딩 후 콜백
+    window.EJS_onGameStart = function() {
+        document.getElementById("loading").style.display = "none";
+    };
+  </script>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", function () {
+      let script = document.createElement("script");
+      script.src = "data/loader.js";
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+</html>
